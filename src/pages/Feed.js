@@ -18,7 +18,7 @@ const Feed = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  //
+
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -27,7 +27,7 @@ const Feed = () => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log("rep ka data: ", data.totalPages);
+                console.log("rep ka data: ", data);
                 setTotalPages(data.totalPages)
                 setPosts(data.content); // Assuming your API returns an object with a 'content' field
             } catch (error) {
@@ -105,15 +105,24 @@ const Feed = () => {
                                 </Typography>
 
                                 <Typography gutterBottom  variant="body">Skills : </Typography>
-                                {p.techs.map((s, i) => {
+                                {/*{p.techs.map((s, i) => {*/}
+                                {/*    return (*/}
+                                {/*        <Typography variant="body" gutterBottom key={i}>*/}
+                                {/*            {highlightQuery(s)} .*/}
+                                {/*            {` `}*/}
+                                {/*        </Typography>*/}
+                                {/*    );*/}
+                                {/*})}*/}
+
+                                {/*for sql*/}
+                                {p.techs = p.techs.replace && p.techs.replace(/(\w+)/g, '$1').slice(1, -1).split(',').map((s, i) => {
                                     return (
                                         <Typography variant="body" gutterBottom key={i}>
-                                            {highlightQuery(s)} .
+                                            {highlightQuery(s)} ,
                                             {` `}
                                         </Typography>
                                     );
                                 })}
-
                             </Card>
                         </Grid>
                     );
